@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../code/Sorting.h"
+#include "../code/lookuptable.h"
 
 #include <fstream>
 #include <iostream>
