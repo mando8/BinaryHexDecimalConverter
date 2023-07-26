@@ -11,4 +11,4 @@ Next you can do `./run_tests` or `./run_app`
 This was run and tested in VSCode.
 
 ## Common Error
-If `make` fails with: `‘dummy’ may be used uninitialized` just go to gtest-death-test.cc and set `dummy = 0`;
+If `make` fails with: `‘dummy’ may be used uninitialized` just go to gtest-death-test.cc and set `dummy = 0;`
