@@ -90,15 +90,14 @@ int size = sizeof(table) / sizeof(table[0]);
 // Converts string to binary, decimal, or hex
 std::string to_not_string(std::string strings, std::string type) {
     std::string ret = "";
-
     for (auto character : strings)
         for (int i = 0; i < size; i++)
             if (table[i].decodedChar == character)
-                if (type == "binary")
+                if (type == "Binary" || type == "binary" || type == "B" || type == "b")
                     ret = ret + table[i].binary + " ";
-                else if (type == "decimal")
+                else if (type == "Decimal" || type == "decimal" || type == "D" || type == "d")
                     ret = ret + table[i].decimal + " ";
-                else if (type == "hex")
+                else if (type == "Hex" || type == "hex" || type == "H" || type == "h")
                     ret = ret + table[i].hex + " ";
 
     std::cout << ret << std::endl;
@@ -112,80 +111,100 @@ std::vector<std::string> create_vector(std::string to_translate) {
     return vec;
 }
 
-std::string to_string_bin(std::string binary_code) {
+std::string to_string_bin(std::string binary_code, std::string type) {
     std::string ret = "";
     std::vector<std::string> binary_vec = create_vector(binary_code);
 
     for (auto bin : binary_vec)
         for (int i = 0; i < size; i++)
             if (table[i].binary == bin)
-                ret += table[i].decodedChar;
+                if (type == "Hex" || type == "hex" || type == "H" || type == "h")
+                    ret = ret + table[i].hex + " ";
+                else if (type == "Decimal" || type == "decimal" || type == "D" || type == "d")
+                    ret = ret + table[i].decimal + " ";
+                else if (type == "Regular" || type == "regular" || type == "R" || type == "r")
+                    ret = ret + table[i].decodedChar;
 
     std::cout << ret << std::endl;
     return ret;
 }
 
-std::string to_string_dec(std::string decimal_code) {
+std::string to_string_dec(std::string decimal_code, std::string type) {
     std::string ret = "";
     std::vector<std::string> decimal_vec = create_vector(decimal_code);
 
     for (auto bin : decimal_vec)
         for (int i = 0; i < size; i++)
             if (table[i].decimal == bin)
-                ret += table[i].decodedChar;
+                if (type == "Hex" || type == "hex" || type == "H" || type == "h")
+                    ret = ret + table[i].hex + " ";
+                else if (type == "Binary" || type == "binary" || type == "B" || type == "b")
+                    ret = ret + table[i].binary + " ";
+                else if (type == "Regular" || type == "regular" || type == "R" || type == "r")
+                    ret = ret + table[i].decodedChar;
 
     std::cout << ret << std::endl;
     return ret;
 }
 
-std::string to_string_hex(std::string hex_code) {
+std::string to_string_hex(std::string hex_code, std::string type) {
     std::string ret = "";
     std::vector<std::string> hex_vec = create_vector(hex_code);
 
     for (auto bin : hex_vec)
         for (int i = 0; i < size; i++)
             if (table[i].hex == bin)
-                ret += table[i].decodedChar;
+                if (type == "Decimal" || type == "decimal" || type == "D" || type == "d")
+                    ret = ret + table[i].decimal + " ";
+                else if (type == "Binary" || type == "binary" || type == "B" || type == "b")
+                    ret = ret + table[i].binary + " ";
+                else if (type == "Regular" || type == "regular" || type == "R" || type == "r")
+                    ret = ret + table[i].decodedChar;
 
     std::cout << ret << std::endl;
     return ret;
 }
 
 int main() {
-    std::string sample_text = "01100110 01101001 01101110 01100100 00100000 01100001 00100000 01101000 01101111 01100010 01100010 01111001 00100000 01100110 01101111 01110010 00100000 01100111 01101111 01100100 00100111 01110011 00100000 01110011 01100001 01101011 01100101";
-
-    std::cout << std::endl;
-    std::cout << "BINARY:" << std::endl;
-    std::string sample_text_tostringbin = to_string_bin(sample_text);
-    to_not_string(sample_text_tostringbin, "binary");
     std::cout << std::endl;
 
-    std::cout << "DECIMAL:" << std::endl;
-    std::string dec = to_not_string(sample_text_tostringbin, "decimal");
-    std::string sample_text_tostringdec = to_string_dec(dec);
-    std::cout << std::endl;
-    
+    std::string input_type;
+    std::cout << "Input a type for input (Binary/B/b, Hex/H/h, Decimal/D/d, Regular/R/r): ";
+    std::getline(std::cin, input_type);
+    while (input_type != "Binary" && input_type != "binary" && input_type != "B" && input_type != "b" && input_type != "Hex" && input_type != "hex" 
+    && input_type != "H" && input_type != "h" && input_type != "Decimal" && input_type != "decimal" && input_type != "D" && input_type != "d" && input_type != "Regular" 
+    && input_type != "regular" && input_type != "R" && input_type != "r"){
+        std::cout << "Please choose a valid input type: ";
+        std::getline(std::cin, input_type);
+    }
 
-    std::cout << "HEX:" << std::endl;
-    std::string hex = to_not_string(sample_text_tostringbin, "hex");
-    std::string sample_text_tostringhex = to_string_hex(hex);
-    std::cout << std::endl << std::endl;
+    std::string output_type;
+    std::cout << "Choose output type: ";
+    std::getline(std::cin, output_type);
+    while ((input_type == output_type) || output_type != "Binary" && output_type != "binary" && output_type != "B" && output_type != "b" && output_type != "Hex" && output_type != "hex" 
+    && output_type != "H" && output_type != "h" && output_type != "Decimal" && output_type != "decimal" && output_type != "D" && output_type != "d" && output_type != "Regular" 
+    && output_type != "regular" && output_type != "R" && output_type != "r"){
+        std::cout << "Please choose a different output type: ";
+        std::getline(std::cin, output_type);
+    }
 
     std::string user_input;
-    std::cout << "Input a string: ";
+    std::cout << "Input the string to convert: ";
     std::getline(std::cin, user_input);
-    std::cout << "Binary: ";
-    std::string user_input_tobinary = to_not_string(user_input, "binary");
-    std::cout << "Decimal: ";
-    std::string user_input_todecimal = to_not_string(user_input, "decimal");
-    std::cout << "Hex: ";
-    std::string user_input_tohex = to_not_string(user_input, "hex");
-    std::cout << std::endl << "Translated Binary:" << std::endl;
-    to_string_bin(user_input_tobinary);
-    std::cout << "Translated Decimal:" << std::endl;
-    to_string_dec(user_input_todecimal);
-    std::cout << "Translated Hex:" << std::endl;
-    to_string_hex(user_input_tohex);
+
+    if (input_type == "Binary" || input_type == "B" || input_type == "b")
+        to_string_bin(user_input, output_type);
+    else if (input_type == "Hex" || input_type == "H" || input_type == "h")
+        to_string_hex(user_input, output_type);
+    else if (input_type == "Decimal" || input_type == "D" || input_type == "d")
+        to_string_dec(user_input, output_type);
+    else if (input_type == "Regular" || input_type == "R" || input_type == "r")
+        to_not_string(user_input, output_type);
+    else{
+        std::cout << "Invalid type.";
+        return 0;
+    }
+
     std::cout << std::endl;
 
     return 0;
