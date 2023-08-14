@@ -12,6 +12,7 @@ Use `./run_app` to try the app!
 
 (all commands run inside /build)
 
+To look at code run from `./run_app` look (here)[https://github.com/mando8/BinaryHexDecimalConverter/blob/main/app/main.cpp].
 
 This was run and tested in VSCode.
 
