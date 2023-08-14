@@ -91,8 +91,8 @@ LookupTable::LookupTable(){}
 LookupTable::~LookupTable(){}
 
 vector<string> LookupTable::create_vector(string to_translate) {
-  istringstream iss(to_translate);
-  vector<string> vec{istream_iterator<string>{iss}, istream_iterator<string>{}};
+  istringstream strstream(to_translate);
+  vector<string> vec{istream_iterator<string>{strstream}, istream_iterator<string>{}};
   return vec;
 }
 
