@@ -1,5 +1,5 @@
 # BinaryHexDecimalConverter
-Used to convert text, Binary, Decimal, or Hex using a (Lookup Table)[https://en.wikipedia.org/wiki/Lookup_table] data structure.
+Used to convert text, Binary, Decimal, or Hex using a [Lookup Table](https://en.wikipedia.org/wiki/Lookup_table) data structure.
 
 A Lookup Table is a data structure that consists of a collection of key-value pairs, where each key is associated with a corresponding value. Lookup tables are made to provide fast access to values based on their associated keys, making them suitable for tasks that involve searching and mapping.
 
@@ -12,6 +12,7 @@ Use `./run_app` to try the app!
 
 (all commands run inside /build)
 
+To look at code run from `./run_app` look [here](https://github.com/mando8/BinaryHexDecimalConverter/blob/main/app/main.cpp).
 
 This was run and tested in VSCode.
 
