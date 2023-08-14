@@ -112,38 +112,54 @@ string LookupTable::to_not_string(string strings, string type){
   return ret;
 }
 
-string LookupTable::to_string_bin(string binary_code){
-  std::string ret = "";
-  std::vector<std::string> binary_vec = create_vector(binary_code);
+string LookupTable::to_string_bin(string binary_code, string type) {
+    string ret = "";
+    vector<string> binary_vec = create_vector(binary_code);
 
-  for (auto bin : binary_vec)
-    for (int i = 0; i < ltsize; i++)
-      if (table[i].binary == bin)
-        ret += table[i].decodedChar;
+    for (auto bin : binary_vec)
+      for (int i = 0; i < ltsize; i++)
+        if (table[i].binary == bin)
+          if (type == "Hex" || type == "hex" || type == "H" || type == "h")
+            ret = ret + table[i].hex + " ";
+          else if (type == "Decimal" || type == "decimal" || type == "D" || type == "d")
+            ret = ret + table[i].decimal + " ";
+          else if (type == "Regular" || type == "regular" || type == "R" || type == "r")
+            ret = ret + table[i].decodedChar;
 
-  return ret;
+    return ret;
 }
 
-string LookupTable::to_string_dec(string decimal_code){
-  std::string ret = "";
-  std::vector<std::string> decimal_vec = create_vector(decimal_code);
 
-  for (auto bin : decimal_vec)
-    for (int i = 0; i < ltsize; i++)
-      if (table[i].decimal == bin)
-        ret += table[i].decodedChar;
+string LookupTable::to_string_dec(string decimal_code, string type) {
+    string ret = "";
+    vector<string> decimal_vec = create_vector(decimal_code);
 
-  return ret;
+    for (auto bin : decimal_vec)
+      for (int i = 0; i < ltsize; i++)
+        if (table[i].decimal == bin)
+          if (type == "Hex" || type == "hex" || type == "H" || type == "h")
+            ret = ret + table[i].hex + " ";
+          else if (type == "Binary" || type == "binary" || type == "B" || type == "b")
+            ret = ret + table[i].binary + " ";
+          else if (type == "Regular" || type == "regular" || type == "R" || type == "r")
+            ret = ret + table[i].decodedChar;
+
+    return ret;
 }
 
-string LookupTable::to_string_hex(string hex_code){
-  std::string ret = "";
-  std::vector<std::string> hex_vec = create_vector(hex_code);
+string LookupTable::to_string_hex(string hex_code, string type) {
+    string ret = "";
+    vector<string> hex_vec = create_vector(hex_code);
 
-  for (auto bin : hex_vec)
-    for (int i = 0; i < ltsize; i++)
-      if (table[i].hex == bin)
-        ret += table[i].decodedChar;
+    for (auto bin : hex_vec)
+      for (int i = 0; i < ltsize; i++)
+        if (table[i].hex == bin)
+          if (type == "Decimal" || type == "decimal" || type == "D" || type == "d")
+            ret = ret + table[i].decimal + " ";
+          else if (type == "Binary" || type == "binary" || type == "B" || type == "b")
+            ret = ret + table[i].binary + " ";
+          else if (type == "Regular" || type == "regular" || type == "R" || type == "r")
+            ret = ret + table[i].decodedChar;
 
-  return ret;
+    return ret;
 }

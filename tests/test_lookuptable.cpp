@@ -56,47 +56,67 @@ protected:
 };
 
 int test_LookupTable::total_grade = 0;
-int test_LookupTable::max_grade = 20;
+int test_LookupTable::max_grade = 60;
 
 // Test cases
-
-TEST_F(test_LookupTable, TestToBinary) {
+TEST_F(test_LookupTable, TestBinarytoAll) {
   LookupTable lt;
-  string ret = lt.to_string_bin("01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110");
-	cout << ret << endl;
-  EXPECT_EQ(ret, "I am a test.");
+  string ret1 = lt.to_string_bin("01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110", "r");
+  EXPECT_EQ(ret1, "I am a test.");
+  add_points_to_grade(5);
+
+  string ret2 = lt.to_string_bin("01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110", "h");
+  EXPECT_EQ(ret2, "49 20 61 6D 20 61 20 74 65 73 74 2E ");
+  add_points_to_grade(5);
+
+  string ret3 = lt.to_string_bin("01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110", "d");
+  EXPECT_EQ(ret3, "73 32 97 109 32 97 32 116 101 115 116 46 ");
   add_points_to_grade(5);
 }
 
-TEST_F(test_LookupTable, TestToDecimal) {
+TEST_F(test_LookupTable, TestDecimaltoAll) {
   LookupTable lt;
-  string ret = lt.to_string_dec("73 32 97 109 32 97 32 116 101 115 116 46");
-	
-  EXPECT_EQ(ret, "I am a test.");
+  string ret1 = lt.to_string_dec("73 32 97 109 32 97 32 116 101 115 116 46", "r");
+  EXPECT_EQ(ret1, "I am a test.");
+  add_points_to_grade(5);
+
+  string ret2 = lt.to_string_dec("73 32 97 109 32 97 32 116 101 115 116 46", "h");
+  EXPECT_EQ(ret2, "49 20 61 6D 20 61 20 74 65 73 74 2E ");
+  add_points_to_grade(5);
+
+  string ret3 = lt.to_string_dec("73 32 97 109 32 97 32 116 101 115 116 46", "b");
+  EXPECT_EQ(ret3, "01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110 ");
   add_points_to_grade(5);
 }
 
-TEST_F(test_LookupTable, TestToHex) {
+TEST_F(test_LookupTable, TestHextoAll) {
 
   LookupTable lt;
-  string ret = lt.to_string_hex("49 20 61 6D 20 61 20 74 65 73 74 2E");
-	
-  EXPECT_EQ(ret, "I am a test.");
+  string ret1 = lt.to_string_hex("49 20 61 6D 20 61 20 74 65 73 74 2E", "r");
+  EXPECT_EQ(ret1, "I am a test.");
+  add_points_to_grade(5);
+
+  string ret2 = lt.to_string_hex("49 20 61 6D 20 61 20 74 65 73 74 2E", "b");
+  EXPECT_EQ(ret2, "01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110 ");
+  add_points_to_grade(5);
+
+  string ret3 = lt.to_string_hex("49 20 61 6D 20 61 20 74 65 73 74 2E", "d");
+  EXPECT_EQ(ret3, "73 32 97 109 32 97 32 116 101 115 116 46 ");
   add_points_to_grade(5);
 }
 
-TEST_F(test_LookupTable, TestToString) {
+TEST_F(test_LookupTable, TestStringtoAll) {
 		
   LookupTable lt;
   string ret1 = lt.to_not_string("I am a test.", "binary");
   EXPECT_EQ(ret1, "01001001 00100000 01100001 01101101 00100000 01100001 00100000 01110100 01100101 01110011 01110100 00101110 ");
-  add_points_to_grade(2);
+  add_points_to_grade(5);
 
   string ret2 = lt.to_not_string("I am a test.", "decimal");
   EXPECT_EQ(ret2, "73 32 97 109 32 97 32 116 101 115 116 46 ");
-  add_points_to_grade(2);
+  add_points_to_grade(5);
 
   string ret3 = lt.to_not_string("I am a test.", "hex");
   EXPECT_EQ(ret3, "49 20 61 6D 20 61 20 74 65 73 74 2E ");
-  add_points_to_grade(1);
+  add_points_to_grade(5);
 }
